@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"  href="Partie2.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Koulen&family=Oxygen&family=Press+Start+2P&display=swap" rel="stylesheet">
+	<title>Partie 2</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="display-4 text-center mb-3">Partie 2 </h1>
+      <form>
+        <div class="form-group">
+          <input id="Input" type="number" class="form-control form-control-lg" placeholder="Donnez La longueur Voulu des mots a generé">
+        </div>
+      </form>
+      <div id="output">
+        <div class="card card-primary mb-2">
+          <div class="card-block">
+            <h4>Resultat:</h4>
+            <div id="outputt" ></div>
+          </div>
+        </div>
+
+        
+        </div>
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	
+	function concat(t,mot,tab,taille){
+     if(taille==0){
+     	tab.push(mot);
+     	return;
+     }
+
+      for (let i=0; i < 2; i++)
+        {
+            var nouvMot = mot + t[i];
+            concat(t, nouvMot, tab, taille - 1);
+        }
+
+	}
+
+	function concat1(tab,taille){
+		let T =['a','b'];
+		concat(T,"",tab,taille);
+	}
+
+
+	function ToutlesMots(tab,tab1,n){
+		if(n==3){
+			tab1.push("abb");
+			return;
+		}
+        
+        concat1(tab,n-3);
+        let s1="abb";
+        for(let i=0;i<tab.length;i++){
+        	let s=s1+tab[i];
+        	tab1.push(s);
+        	for(let j=0;j<tab[i].length;j++) {
+        		let nouv=tab[i].substring(0,j+1)+s1+tab[i].substring(j+1);
+        		tab1.push(nouv);
+
+        	} 
+        	}      
+
+	}
+
+
+	document.getElementById("Input").addEventListener("input",function1);
+  function function1(e){
+   let v=e.target.value;
+   let tab =[];
+   let tab1 =[];
+   ToutlesMots(tab,tab1,v);
+   document.getElementById("outputt").innerHTML=tab1;
+ 
+  }
+ 
+
+	
+</script>
+</body>
+</html>
